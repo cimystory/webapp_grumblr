@@ -1,0 +1,41 @@
+{% extends "grumblr/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/grumblr/">Home</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/grumblr/profile/{{request.user}}">
+                    {{firstname}} {{lastname}}'s Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'logout' %}">Log out</a></li> 
+                </ul>
+            </div>
+        </nav>
+        {% for error in errors %}
+        <p style="color:red">
+        {{error}}
+        </p>
+        {% endfor %}
+        <div class="row">
+            <div class="col-md-8">
+            <form enctype = 'multipart/form-data' action = "{% url 'edit' request.user %}" method = "post">
+                {{form}}
+                <button type = "submit" value="post">Save Change</button>
+                {% csrf_token %}
+            </form>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-primary" href="/grumblr/change/{{request.user}}">Change Password</a>
+            </div>
+        </div>    
+    </div>
+{% endblock %}

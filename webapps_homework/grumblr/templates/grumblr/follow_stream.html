@@ -1,0 +1,35 @@
+{% extends "grumblr/base.html" %}
+
+{% block title %}
+Followers
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/grumblr/">Home</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/grumblr/follower/{{request.user}}">
+                    Following</a></li>
+                </ul>
+                <ul class="nav navbar-nav">
+                    <li><a href="/grumblr/profile/{{request.user}}">
+                    Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'logout' %}">Log out</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="centered">
+            <input type = "hidden" id = "user-field" value = "{{request.user.username}}">
+            <ol id = "todo-list">
+            </ol>
+        </div>
+{% endblock %}
+{% block script %}
+<script src="/static/grumblr/js/follow_stream.js" type="text/javascript"></script>
+{% endblock %}

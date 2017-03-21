@@ -1,0 +1,31 @@
+{% extends "grumblr/base.html" %}
+
+{% block title %}
+Log in
+{% endblock %}
+
+{% block content %}
+<div class="container">   
+	<form class="form-signin" method="post" action="{% url 'login' %}">
+        <h1 class="form-signin-heading">Grumblr Login</h1>
+		<table>
+
+        <tr>
+            <td><input class="form-control" placeholder="Username" type="text" name="username"></td>
+        </tr>
+        <tr>
+            <td><input class="form-control" placeholder="Password" type ="password" name="password"></td>
+        </tr>
+        </table>
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Login" />
+        <p><a class="text-right" href="/grumblr/register">Register</a></p>
+        <input type="hidden" name="next" value="{{ next }}" />
+        {% csrf_token %}
+	</form>
+</div>
+{% if form.errors %}
+    <p>
+    Incorrect user name and password.
+    </p>
+{% endif %}
+{% endblock %}

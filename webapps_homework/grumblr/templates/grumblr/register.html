@@ -1,0 +1,42 @@
+{% extends "grumblr/base.html" %}
+
+{% block title %}
+Register
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+	<h1 class="text-center">Grumblr</h1>   
+	<form class="form-signin" method="post" action="/grumblr/register">
+        <table>
+            {% for field in form.visible_fields %}
+            <tr>
+                <!--<td><input class="form-control" placeholder={{field.label}} name={{field.name}}></td>-->
+                <td>{{ field.label_tag }}</td>
+                <td>{{ field }}</td>
+                {% if field.errors %}
+                    <td>{{ field.errors }}</td>
+                {% endif %}
+            </tr>
+
+            {% endfor %}
+        </table>
+
+        {% if form.non_field_errors %}
+            <section>
+                <div id="id-error" class="alert alert-danger">
+                    {% for error in form.non_field_errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            </section>
+        {% endif %}
+        <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register" />
+        <p><a class="text-right" href="{% url 'logout' %}">Login</a></p>
+
+        {% csrf_token %}
+
+	</form>
+    </div>
+
+{% endblock %}

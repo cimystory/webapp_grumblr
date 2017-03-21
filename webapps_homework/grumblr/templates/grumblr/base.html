@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>{% block title %} {% endblock %}</title>
+    <link href="/static/grumblr/css/grumblr.css" rel="stylesheet">
+    <link href="/static/grumblr/css/signin.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <link href="/static/grumblr/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/grumblr/css/bootstrap-theme.css" rel="stylesheet">
+</head>
+<body>
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="/static/grumblr/js/jquery-2.1.4.min.js" type="text/javascript"></script>
+
+    {% block script %}
+    {% endblock %}
+</body>
+</html>

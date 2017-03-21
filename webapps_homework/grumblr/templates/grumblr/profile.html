@@ -1,0 +1,57 @@
+{% extends "grumblr/base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="/grumblr/">Home</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li><a href="/grumblr/edit-entry/{{request.user}}">
+                    Edit Profile</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{% url 'logout' %}">Log out</a></li> 
+                </ul>
+            </div>
+        </nav>
+        {% for error in errors %}
+        <p style="color:red">
+        {{error}}
+        </p>
+        {% endfor %}
+        <div class="row">
+            <div class="col-md-8">
+                <img src = "/grumblr/photo/{{click_user}}" width = "100px">
+                <p>Age:{{age}}</p>
+                <p>Bio:{{bio}} </p>
+                <input type = "hidden" id = "user-field" value = "{{click_user.username}}">
+                <ol id = "todo-list">
+                </ol>
+            </div>
+            <div class="col-md-4">
+                <div class="well">
+                    {% if request.user != click_user %}
+                        {% if follow == True %}
+                            <a class="btn btn-primary" href="/grumblr/follow/{{click_user}}">Unfollow</a>
+                        {% else %}
+                            <a class="btn btn-primary" href="/grumblr/follow/{{click_user}}">Follow</a>
+                        {% endif %}
+                    {% endif %}
+                    <p>First Name: {{firstname}}</p>
+                    <p>Last Name: {{lastname}}</p>
+                    <p>Email: {{email}}</p>
+                </div>
+            </div>
+        </div>    
+    </div>
+{% endblock %}
+
+{% block script %}
+<script src="/static/grumblr/js/profile.js" type="text/javascript"></script>
+{% endblock %}
